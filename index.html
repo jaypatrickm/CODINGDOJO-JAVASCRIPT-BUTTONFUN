@@ -1,0 +1,60 @@
+<html>
+<head>
+	<title>Button Fun</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+	<button id="someButton">This is Some Button</button>
+	<script>
+		//$(document).ready(function() {
+			var button = document.getElementById("someButton");
+			button.style.color = 'blue';
+			button.addEventListener("click", switchColor);
+			button.addEventListener("mouseover", switchGreen);
+			var btn_color;
+			
+			// here we define the whatToDoOnClick function
+			function switchColor() {
+				var btn_color = this.style.color;
+				console.log(btn_color);
+				if (btn_color == 'red')
+				{
+					this.style.color = 'blue';
+				}
+				else {
+					this.style.color = 'red';
+				}
+			}
+			function switchGreen() {
+				btn_color = this.style.color
+				console.log('mouseover!');
+				this.style.color = 'green';
+			}
+			button.addEventListener("mouseout", originalcolor);
+
+			function originalcolor(){
+				this.style.color = btn_color;
+				console.log('mouseout!');
+			}
+			document.onkeydown = function(e)
+			{
+				console.log(e.keyCode);
+				if(e.keyCode == 13)
+				{
+					var newbutton = document.createElement("button");
+					var t = document.createTextNode("this is a second button");
+					newbutton.appendChild(t);
+					newbutton.style.color = 'blue';
+					newbutton.addEventListener("click", switchColor);
+					newbutton.addEventListener("mouseover", switchGreen);
+					newbutton.addEventListener("mouseout", originalcolor);
+					document.body.appendChild(newbutton);
+				}
+			}
+
+		//});
+
+	</script>
+
+</body>
+</html>
